@@ -29,3 +29,9 @@ services:
         class: App\Validator\EmailDomainValidator
         arguments:
             $globalBlockedDomains: 'globalblocked.fr,test.fr'
+
+    App\EventSubscriber\ExceptionSubscriber:
+        class : App\EventSubscriber\ExceptionSubscriber
+        arguments:
+            $from:
+            $to:
