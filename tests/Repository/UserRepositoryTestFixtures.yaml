@@ -1,0 +1,5 @@
+App\Entity\User:  
+  user{1..10}:
+    # échapper le @ qui est réservé pour les relations entités
+    email: user<current()>\@domain.fr
+    password: "0000"
