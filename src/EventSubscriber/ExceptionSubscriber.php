@@ -14,7 +14,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
     private $from;
     private $to;
 
-    public function __construct(\Swift_Mailer $mailer, string $from, string $to) {
+    public function __construct(\Swift_Mailer $mailer, ?string $from, ?string $to) {
         $this->mailer = $mailer;
         $this->from = $from;
         $this->to = $to;
@@ -31,10 +31,11 @@ class ExceptionSubscriber implements EventSubscriberInterface
         $message = (new \Swift_Message())
             ->setFrom($this->from)
             ->setTo($this->to)
-            ->setBody("
-                {$event->getRequest()->getRequestUri()}
-                {$event->getException()->getMessage()}
-                {$event->getException()->getTraceAsString()}");
+            ->setBody("{$event->getRequest()->getRequestUri()}
+
+{$event->getException()->getMessage()}
+                
+{$event->getException()->getTraceAsString()}");
         // var_dump($message->getBody());
         $this->mailer->send($message);
     }   
