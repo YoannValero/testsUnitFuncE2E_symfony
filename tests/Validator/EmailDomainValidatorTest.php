@@ -13,8 +13,11 @@ use Symfony\Component\Validator\Exception\MissingOptionsException;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 class EmailDomainValidatorTest extends TestCase
-{
-    public function getValidator($expectedViolation = false, $dbBlockedDomain = [] ) {
+{    
+    
+    public function getValidator(bool $expectedViolation = false, array $dbBlockedDomain = [] ) : EmailDomainValidator {
+
+        /** @var ConfigRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $repository = $this->getMockBuilder(ConfigRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -66,7 +69,8 @@ class EmailDomainValidatorTest extends TestCase
     }
     */
     private function getContext(bool $expectedViolation) {
-        
+
+        /** @var ExecutionContextInterface&\PHPUnit\Framework\MockObject\MockObject $context */
         $context = $this->getMockBuilder(ExecutionContextInterface::class)->getMock();
 
         if ($expectedViolation) {

@@ -33,5 +33,5 @@ services:
     App\EventSubscriber\ExceptionSubscriber:
         class : App\EventSubscriber\ExceptionSubscriber
         arguments:
-            $from:
-            $to:
+            $from: 
+            $to: 
